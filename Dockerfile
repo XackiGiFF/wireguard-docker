@@ -21,7 +21,13 @@ RUN echo "deb http://ppa.launchpad.net/wireguard/wireguard/ubuntu ${ubuntu_coden
     apt-get clean && rm -rf /var/lib/apt/lists/* &&\
     dkms uninstall wireguard/$(dkms status | awk -F ', ' '{ print $2 }')
 
-COPY docker-entrypoint.sh /bin/docker-entrypoint.sh
+WORKDIR /scripts
+ENV PATH="/scripts:${PATH}"
+COPY install-module /scripts
+COPY run /scripts
+COPY genkeys /scripts
+COPY net-up /scripts
+COPY net-down /scripts
+RUN chmod 755 /scripts/*
 
-ENTRYPOINT [ "docker-entrypoint.sh" ]
-CMD [ "run-server" ]
+CMD ["run"]
