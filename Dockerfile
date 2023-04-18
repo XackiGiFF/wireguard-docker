@@ -5,7 +5,9 @@ FROM ubuntu:${ubuntu_codename}
 ENV DEBIAN_FRONTEND="noninteractive"
 ARG ubuntu_codename=jammy
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} universe" > /etc/apt/sources.list &&\
+RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main restricted" > /etc/apt/sources.list &&\
+    echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename}-updates main restricted" >> /etc/apt/sources.list &&\
+    echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} universe" >> /etc/apt/sources.list &&\
     echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename}-updates universe" >> /etc/apt/sources.list &&\
     cat /etc/apt/sources.list &&\
     apt-get update -y && apt-get upgrade -y&&\
