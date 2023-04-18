@@ -10,7 +10,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main" > /etc/
     cat /etc/apt/sources.list &&\
     apt-get update &&\
     apt-get install --yes --no-install-recommends \
-    gnupg iproute2 iptables ifupdown iputils-ping make gcc cpp binutils dkms kmod &&\
+    gnupg iproute2 iptables ifupdown-ng iputils-ping make gcc cpp binutils dkms kmod &&\
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
