@@ -1,4 +1,4 @@
-ARG ubuntu_codename=bionic
+ARG ubuntu_codename=jammy
 
 FROM ubuntu:${ubuntu_codename}
 
