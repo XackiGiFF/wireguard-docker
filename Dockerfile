@@ -13,14 +13,8 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main" > /etc/
     gnupg iproute2 iptables ifupdown iputils-ping make gcc cpp binutils dkms kmod &&\
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-#Fix apt-keys
 
-RUN sed -i "s%{GPG_EXE}\")' --%{GPG_EXE}\")' --batch --%g" /usr/bin/apt-key
-
-RUN echo "deb http://ppa.launchpad.net/wireguard/wireguard/ubuntu ${ubuntu_codename} main" > /etc/apt/sources.list.d/wireguard.list &&\
-    echo "deb-src http://ppa.launchpad.net/wireguard/wireguard/ubuntu ${ubuntu_codename} main" >> /etc/apt/sources.list.d/wireguard.list &&\
-    apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E1B39B6EF6DDB96564797591AE33835F504A1A25 &&\
-    apt-get update &&\
+RUN apt-get update &&\
     apt-get install --yes --no-install-recommends wireguard iptables nano net-tools linux-headers-$(uname -r) &&\
     apt-get clean && rm -rf /var/lib/apt/lists/* &&\
     dkms uninstall wireguard/$(dkms status | awk -F ', ' '{ print $2 }')
