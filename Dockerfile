@@ -18,8 +18,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main restrict
 
 RUN apt-get update -y && apt-get upgrade -y&&\
     apt-get install --yes --no-install-recommends wireguard iptables nano net-tools &&\
-    apt-get clean && rm -rf /var/lib/apt/lists/* &&\
-    dkms uninstall wireguard/$(dkms status | awk -F ', ' '{ print $2 }')
+    apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /scripts
 ENV PATH="/scripts:${PATH}"
