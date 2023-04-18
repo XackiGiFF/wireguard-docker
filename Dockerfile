@@ -3,7 +3,7 @@ ARG ubuntu_codename=bionic
 FROM ubuntu:${ubuntu_codename}
 
 ENV DEBIAN_FRONTEND="noninteractive"
-ARG ubuntu_codename=bionic
+ARG ubuntu_codename=jammy
 
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main" > /etc/apt/sources.list &&\
     echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename}-updates main" >> /etc/apt/sources.list &&\
