@@ -8,7 +8,7 @@ ARG ubuntu_codename=jammy
 RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} universe" > /etc/apt/sources.list &&\
     echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename}-updates universe" >> /etc/apt/sources.list &&\
     cat /etc/apt/sources.list &&\
-    apt-get update &&\
+    apt-get update -y && apt-get upgrade -y&&\
     apt-get install --yes --no-install-recommends \
     gnupg iproute2 iptables ifupdown iputils-ping make gcc cpp binutils dkms kmod &&\
     apt-get clean && rm -rf /var/lib/apt/lists/*
