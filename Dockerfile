@@ -16,8 +16,7 @@ RUN echo "deb http://archive.ubuntu.com/ubuntu/ ${ubuntu_codename} main restrict
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
-RUN apt-get update -y && apt-get upgrade -y&&\
-    apt-get install --yes --no-install-recommends wireguard-tools iptables nano net-tools
+RUN apt-get install --yes --no-install-recommends wireguard-tools iptables nano net-tools
 
 WORKDIR /scripts
 ENV PATH="/scripts:${PATH}"
